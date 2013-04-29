@@ -162,7 +162,7 @@
 			p.speed = Number(p.speed);
 			p.duration = Number(p.duration);
 			p.duration = p.duration > 1 ? p.duration - 1 : 1; 
-			defaultProperty.stopImageNumber = options.stopImageNumber; 
+			defaultProperty.originalStopImageNumber = options.stopImageNumber; 
 		}
 
 		var ret = {
