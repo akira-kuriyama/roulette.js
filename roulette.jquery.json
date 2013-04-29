@@ -1,12 +1,12 @@
 {
-	"name": "roulette image",
+	"name": "roulette",
 	"title": "jQuery Roulette Image",
 	"description": "jQuery plugin for roulette image.",
 	"keywords": [
 		"roulette",
 		"image"
 	],
-	"version": "1.0.0",
+	"version": "1.0.3",
 	"author": {
 		"name": "Akira Kuriyama",
 		"url": "http://d.hatena.ne.jp/shepherdMaster"
