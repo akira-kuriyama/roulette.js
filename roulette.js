@@ -138,7 +138,6 @@
 			}
 			p.stopImageNumber = $.isNumeric(defaultProperty.originalStopImageNumber) && Number(defaultProperty.originalStopImageNumber) >= 0 ?
 									Number(defaultProperty.originalStopImageNumber) : Math.floor(Math.random() * p.imageCount); 
-			console.log(p.stopImageNumber);
 			p.startCallback();
 			roll();
 			setTimeout(function(){
