@@ -1,0 +1,72 @@
+body {	
+	padding-top: 60px;
+	padding-bottom: 40px;
+}
+div.roulette {
+	margin-top: 35px;
+}
+div.roulette-inner {
+	left : 33px;
+}
+
+
+div.roulette { 
+}
+
+div.roulette_container {
+	background-color:rgb(253, 252, 253);
+	width:200px;
+	height:200px;
+	border:1px solid rgba(253, 252, 253, 0.31);
+	box-shadow:0px 0px 3px lightpink;margin:auto;
+}
+
+.btn_container {
+	margin:20px;
+	text-align:center;
+}
+.btn_container .start {
+	margin-right:20px;
+}
+.log_container {
+	margin-left:25px;
+	margin-top:80px;
+}
+.demo_label {
+	border-left:5px solid gray;
+	padding-left:5px;
+	font-size: 20px;
+}
+#msg {
+	border:1px solid #eee;
+	padding:10px 20px;
+	overflow-y: scroll;
+	max-height: 100px; 
+}
+div.param_label {
+	margin:20px 0px 10px 0px;
+}
+#stopImageNumber {
+	width : 20px;
+}
+.param_name {
+	font-weight:bold;
+}
+.image_sample img{
+	width : 50px;
+	cursor: pointer;
+}
+.right_container {
+	width: 550px;
+	margin-left: 100px;
+}
+.code_container {
+	margin-top:50px;
+	width: 500px;
+}
+.label-info {
+	margin-bottom: 3px;
+}
+div.ui-slider {
+	width: 300px;
+}
