@@ -1,10 +1,11 @@
 (function($) {
 	var Roulette = function(options) {
 		var defaultSettings = {
-			maxPlayCount : null, // null or x >= 0
+			maxPlayCount : null, // x >= 0 or null
 			speed : 10, // x > 0
-			stopImageNumber : 0, // x >= 0
+			stopImageNumber : null, // x >= 0 or null or -1
 			rollCount : 3, // x >= 0
+			duration : 3, //(x second)	
 			stopCallback : function() {
 			},
 			startCallback : function() {
@@ -17,6 +18,7 @@
 			$rouletteTarget : null,
 			imageCount : null,
 			$images : null,
+			originalStopImageNumber : null,
 			totalHeight : null,
 			topPosition : 0,
 
@@ -29,7 +31,7 @@
 
 			distance : 0,
 			runUpDistance : null,
-			isIE : navigator.userAgent.toLowerCase().indexOf('msie') > -1 // TODO
+			isIE : navigator.userAgent.toLowerCase().indexOf('msie') > -1 // TODO IE
 		};
 		var p = $.extend({}, defaultSettings, options, defaultProperty);
 
@@ -40,11 +42,13 @@
 			p.isRunUp = defaultProperty.isRunUp;
 			p.isSlowdown = defaultProperty.isSlowdown;
 			p.isStop = defaultProperty.isStop;
-			p.slowDownStartDistance = p.rollCount ? p.rollCount * p.totalHeight : null;
 			p.topPosition = defaultProperty.topPosition;
 		}
-
+		
 		var slowDownSetup = function() {
+			if(p.isSlowdown){
+				return;
+			}
 			p.slowDownCallback();
 			p.isSlowdown = true;
 			p.slowDownStartDistance = p.distance;
@@ -56,12 +60,7 @@
 			}
 		}
 
-		// ルーレットを回転させる(一回転させるのではなく、1フレーム進める)
 		var roll = function() {
-			if (!p.isSlowdown && p.slowDownStartDistance && p.distance >= p.slowDownStartDistance) {
-				slowDownSetup();
-			}
-
 			var speed_ = p.speed;
 
 			if (p.isRunUp) {
@@ -88,26 +87,34 @@
 			if (p.topPosition >= p.totalHeight) {
 				p.topPosition = p.topPosition - p.totalHeight;
 			}
-			// TODO
+			// TODO IE 
 			if (p.isIE) {
 				p.$rouletteTarget.css('top', '-' + p.topPosition + 'px');
 			} else {
-				p.$rouletteTarget.css('transform', 'translate3d(0px, -' + p.topPosition + 'px, 0px)');
+				// TODO more smooth roll
+				p.$rouletteTarget.css('transform', 'translate(0px, -' + p.topPosition + 'px)');
 			}
 			setTimeout(roll, 1);
 		}
 
 		var init = function($roulette) {
 			$roulette.css({ 'overflow' : 'hidden' });
+			defaultProperty.originalStopImageNumber = p.stopImageNumber;
 			if (!p.$images) {
 				p.$images = $roulette.find('img').remove();
 				p.imageCount = p.$images.length;
-				p.$images.eq(0).load(function(){
+				p.$images.eq(0).bind('load',function(){
 					p.imageHeight = $(this).height();
 					$roulette.css({ 'height' : (p.imageHeight + 'px') });
 					p.totalHeight = p.imageCount * p.imageHeight;
-					p.slowDownStartDistance = p.rollCount ? p.rollCount * p.totalHeight : null;
 					p.runUpDistance = 2 * p.imageHeight;
+				}).each(function(){
+					if (this.complete || this.complete === undefined){
+						var src = this.src;
+						// set BLANK image
+						this.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+						this.src = src;
+					}  
 				});
 			}
 			$roulette.find('div').remove();
@@ -129,8 +136,14 @@
 			if (p.maxPlayCount && p.playCount > p.maxPlayCount) {
 				return;
 			}
+			p.stopImageNumber = $.isNumeric(defaultProperty.originalStopImageNumber) && Number(defaultProperty.originalStopImageNumber) >= 0 ?
+									Number(defaultProperty.originalStopImageNumber) : Math.floor(Math.random() * p.imageCount); 
+			console.log(p.stopImageNumber);
 			p.startCallback();
 			roll();
+			setTimeout(function(){
+				slowDownSetup();
+			}, p.duration * 1000);
 		}
 
 		var stop = function(option) {
@@ -144,11 +157,19 @@
 				slowDownSetup();
 			}
 		}
+		var option = function(options) {
+			p = $.extend(p, options);
+			p.speed = Number(p.speed);
+			p.duration = Number(p.duration);
+			p.duration = p.duration > 1 ? p.duration - 1 : 1; 
+			defaultProperty.stopImageNumber = options.stopImageNumber; 
+		}
 
 		var ret = {
 			start : start,
 			stop : stop,
-			init : init
+			init : init,
+			option : option
 		}
 		return ret;
 	}
