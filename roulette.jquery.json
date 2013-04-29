@@ -6,7 +6,7 @@
 		"roulette",
 		"image"
 	],
-	"version": "v1.0.4",
+	"version": "v1.0.5",
 	"author": {
 		"name": "Akira Kuriyama",
 		"url": "http://d.hatena.ne.jp/shepherdMaster"
@@ -18,7 +18,7 @@
 		}
 	],
 	"bugs": "https://github.com/kbwood/akira-kuriyama/roulette.js/issues",
-	"demo": "http://demo.st-marron/roulette/sample/demo.html",
+	"demo": "http://demo.st-marron.info/roulette/sample/demo.html",
 	"dependencies": {
 		"jquery": ">=1.8"
 	}
