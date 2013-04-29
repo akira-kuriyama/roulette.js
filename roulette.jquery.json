@@ -1,0 +1,25 @@
+{
+	"name": "roulette image",
+	"title": "jQuery Roulette Image",
+	"description": "jQuery plugin for roulette image.",
+	"keywords": [
+		"roulette",
+		"image"
+	],
+	"version": "1.0.0",
+	"author": {
+		"name": "Akira Kuriyama",
+		"url": "http://d.hatena.ne.jp/shepherdMaster"
+	},
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "https://github.com/akira-kuriyama/roulette.js/blob/master/MIT-LICENSE.txt"
+		}
+	],
+	"bugs": "https://github.com/kbwood/akira-kuriyama/roulette.js/issues",
+	"demo": "http://demo.st-marron/roulette/sample/demo.html",
+	"dependencies": {
+		"jquery": ">=1.8"
+	}
+}
