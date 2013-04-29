@@ -1,0 +1,10 @@
+{
+  "name": "roulette",
+  "version": "1.0.0",
+  "main": "roulette.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ]
+}
