@@ -1,10 +1,23 @@
 {
-  "name": "roulette",
-  "version": "1.0.0",
+  "name": "roulette.js",
+  "version": "1.0.9",
   "main": "roulette.js",
   "ignore": [
     "**/.*",
     "node_modules",
     "components"
-  ]
+  ],
+  "authors": [
+    "akira-kuriyama"
+  ],
+  "description": "roulette.js is a jQuery Plugin for roulette image",
+  "keywords": [
+    "jquery",
+    "javascript",
+    "js",
+    "roulette",
+    "image"
+  ],
+  "license": "MIT",
+  "homepage": "http://demo.st-marron.info/roulette/sample/demo.html"
 }
